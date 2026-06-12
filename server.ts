@@ -155,12 +155,35 @@ Rules for file updates:
 
 ${modelInstructions}`;
 
+    // Build a cleaned and ultra-compact version of message history
+    // Since current files state is already sent in filesContext, previous messages do not need to contain huge replica code blocks
+    const cleanedHistory = messages.map((m: any) => {
+      let content = m.content || "";
+      const rawRole = String(m.role || "user").toLowerCase();
+      const mappedRole = rawRole === "assistant" || rawRole === "model" ? "model" : "user";
+
+      if (mappedRole === "model") {
+        // Strip out entire replica <file_action> code content so the model doesn't process thousands of redundant lines
+        content = content.replace(/<file_action\s+path=["']([^"']+)["']\s*>([\s\S]*?)<\/file_action>/gi, (match: string, filePath: string) => {
+          return `[Updated code file in workspace: ${filePath}]`;
+        });
+        
+        // Strip other tags so physical history output is clean
+        content = content
+          .replace(/<file_delete[\s\S]*?\/>/gi, "[Deleted file from workspace]")
+          .replace(/<terminal_command>([\s\S]*?)<\/terminal_command>/gi, "[Executed command: $1]")
+          .trim();
+      }
+
+      return {
+        role: mappedRole,
+        parts: [{ text: content }]
+      };
+    });
+
     const contents = [
       { role: "user", parts: [{ text: filesContext }] },
-      ...messages.map((m: any) => ({
-        role: m.role || "user",
-        parts: [{ text: m.content || "" }],
-      })),
+      ...cleanedHistory
     ];
 
     // Call the robust generation helper instead of calling direct model once

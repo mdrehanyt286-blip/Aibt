@@ -951,9 +951,20 @@ export default function App() {
                         <div className="w-6 h-6 rounded bg-gradient-to-tr from-pink-500 to-indigo-500 flex items-center justify-center text-white shrink-0">
                           <Cpu className="w-3 h-3 animate-spin" />
                         </div>
-                        <div className="bg-[#0b0e1b] border border-white/5 rounded-xl px-3 py-2 text-[11px] text-slate-400 flex items-center gap-1.5 font-mono">
-                          <Loader2 className="w-3 h-3 animate-spin text-pink-500" />
-                          <span>AI Bhai is coding...</span>
+                        <div className="bg-[#0b0e1b] border border-white/5 rounded-xl px-3 py-2 text-[11px] text-slate-300 flex flex-col gap-1 font-mono max-w-[85%]">
+                          <div className="flex items-center gap-1.5 font-bold">
+                            <Loader2 className="w-3 h-3 animate-spin text-[#ec4899]" />
+                            {selectedModel === "deepseek-r1" && <span className="text-emerald-400">🧠 DEEPSEEK R1 CORE ACTIVE</span>}
+                            {selectedModel === "gpt-4o" && <span className="text-purple-400">💬 GPT-4O COMPILATION MODEL</span>}
+                            {selectedModel === "claude-3.5-sonnet" && <span className="text-orange-400">🍊 CLAUDE 3.5 PERFECT LAYOUTS</span>}
+                            {selectedModel === "gemini-3.5-flash" && <span className="text-pink-400">⚡ GEMINI 3.5 FLASH LIGHTNING ENGINE</span>}
+                          </div>
+                          <div className="text-[9px] text-slate-500 animate-pulse">
+                            {selectedModel === "deepseek-r1" && "Analyzing workspace code tree and initiating chain of thought..."}
+                            {selectedModel === "gpt-4o" && "Formulating optimized React states and designing high-fidelity layouts..."}
+                            {selectedModel === "claude-3.5-sonnet" && "Polishing responsive UI animations & validating strict types..."}
+                            {selectedModel === "gemini-3.5-flash" && "Drafting rapid functional code blocks on virtual files..."}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -1184,9 +1195,14 @@ export default function App() {
                         <div className="w-6 h-6 rounded bg-gradient-to-tr from-pink-500 to-indigo-500 flex items-center justify-center text-white shrink-0">
                           <Cpu className="w-3 h-3 animate-spin" />
                         </div>
-                        <div className="bg-[#0b0e1b] border border-white/5 rounded-xl px-3 py-2 text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-                          <Loader2 className="w-3 h-3 animate-spin text-pink-500" />
-                          <span>Maha-akal write kar raha hai...</span>
+                        <div className="bg-[#0b0e1b] border border-white/5 rounded-xl px-3 py-2 text-xs text-slate-300 flex flex-col gap-1 font-mono max-w-[85%]">
+                          <div className="flex items-center gap-1.5 font-bold">
+                            <Loader2 className="w-3.5 h-3.5 animate-spin text-pink-500" />
+                            {selectedModel === "deepseek-r1" && <span className="text-emerald-400">🧠 R1 DEEP REASONING</span>}
+                            {selectedModel === "gpt-4o" && <span className="text-purple-400">💬 GPT-4O HIGH-EFFICIENCY</span>}
+                            {selectedModel === "claude-3.5-sonnet" && <span className="text-orange-400">🍊 CLAUDE 3.5 DESIGN CORE</span>}
+                            {selectedModel === "gemini-3.5-flash" && <span className="text-pink-400">⚡ GEMINI FLASH FAST</span>}
+                          </div>
                         </div>
                       </div>
                     )}
