@@ -1,0 +1,6 @@
+{
+  "name": "AI Coding Sandbox Workspace",
+  "description": "An interactive full-stack AI Developer Workspace with real-time Gemini-powered code generation, virtual file trees, interactive editor, Terminal, and Live Sandbox Preview.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
